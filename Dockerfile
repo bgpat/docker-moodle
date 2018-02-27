@@ -10,4 +10,4 @@ WORKDIR /moodle
 EXPOSE 80
 
 ENTRYPOINT ["php"]
-CMD ["-S", "0.0.0.0:80", "app.yaml"]
+CMD ["-S", "0.0.0.0:80"]
