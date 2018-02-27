@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: install
+  namespace: moodle
+spec:
+  template:
+    spec:
+      containers:
+      - name: install
+        image: bgpat/moodle:latest
+        command:
+        - php
+        - admin/cli/install_database.php
+        - --agree-license
+        - --adminpass=password
+        envFrom:
+        - configMapRef:
+            name: moodle
+      restartPolicy: Never

@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cron
+  namespace: moodle
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron
+            image: bgpat/moodle:latest
+            command:
+            - php
+            - admin/cli/cron.php
+            envFrom:
+            - configMapRef:
+                name: moodle
+          restartPolicy: OnFailure

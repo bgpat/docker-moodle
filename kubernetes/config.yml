@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: moodle
+  namespace: moodle
+  labels:
+    app: moodle
+data:
+  CONFIG_DBHOST: mysql
+  CONFIG_WWWROOT: http://moodle.k8s.local
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+  namespace: moodle
+  labels:
+    app: mysql
+data:
+  MYSQL_DATABASE: moodle
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_USER: moodle
+  MYSQL_PASSWORD: moodle

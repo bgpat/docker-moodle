@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: moodle
+  namespace: moodle
+  annotation:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  rules:
+  - host: moodle.k8s.local
+    http:
+      paths:
+      - backend:
+          serviceName: moodle
+          servicePort: 80

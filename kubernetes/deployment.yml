@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodle
+  namespace: moodle
+  labels:
+    app: moodle
+spec:
+  selector:
+    matchLabels:
+      app: moodle
+  template:
+    metadata:
+      labels:
+        app: moodle
+    spec:
+      containers:
+      - name: moodle
+        image: bgpat/moodle:latest
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: moodle
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: moodle
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: mysql
+        ports:
+        - containerPort: 3306
