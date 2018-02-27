@@ -1,0 +1,18 @@
+version: "3"
+services:
+  moodle:
+    image: bgpat/moodle
+#   build: .
+    ports:
+      - 8002:80
+    environment:
+      CONFIG_DBHOST: mysql
+      CONFIG_WWWROOT: http://127.0.0.1
+#   command: admin/cli/install_database.php --agree-license --adminpass=password
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: moodle
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: moodle
+      MYSQL_PASSWORD: moodle
