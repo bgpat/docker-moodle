@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: moodle
   namespace: moodle
-  annotation:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   rules:
   - host: moodle.k8s.local
